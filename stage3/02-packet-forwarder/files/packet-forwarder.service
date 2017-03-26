@@ -1,0 +1,11 @@
+[Unit]
+Description=Semtech packet-forwarder
+
+[Service]
+WorkingDirectory=/opt/semtech/packet_forwarder/lora_pkt_fwd
+ExecStart=/opt/semtech/packet_forwarder/lora_pkt_fwd/start.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

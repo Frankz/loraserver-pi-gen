@@ -1,0 +1,14 @@
+[Unit]
+Description=Create LoRa Server database
+After=postgresql@9.6-main.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sudo -u postgres /usr/bin/psql -c "create role loraserver_ns with login password 'loraserver_ns';"
+ExecStart=/usr/bin/sudo -u postgres /usr/bin/psql -c "create role loraserver_as with login password 'loraserver_as';"
+ExecStart=/usr/bin/sudo -u postgres /usr/bin/psql -c "create database loraserver_ns with owner loraserver_ns;"
+ExecStart=/usr/bin/sudo -u postgres /usr/bin/psql -c "create database loraserver_as with owner loraserver_as;"
+ExecStartPost=/bin/rm /lib/systemd/system/create-loraserver-db.service ; /usr/sbin/update-rc.d create-loraserver-db remove
+
+[Install]
+WantedBy=multi-user.target

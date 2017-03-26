@@ -3,5 +3,6 @@ work/*
 config
 postrun.sh
 SKIP
-.pc
-*-pc
+.*
+*.log
+Vagrantfile
